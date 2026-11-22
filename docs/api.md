@@ -15,6 +15,12 @@ PWA independiente, sin afiliación a EVsare. Node.js 24 LTS, SQLite local (WAL),
 
 `POST /api/register` responde **410** con `LOCAL_REGISTRATION_REMOVED`: no hay registro público en A la caaarga!!.
 
+## Métricas privadas
+
+Por defecto el exportador está deshabilitado. `METRICS_PORT` habilita un puerto separado y `METRICS_PEERS` exige una lista de IP de scrapers autorizados. Limita también el puerto en el firewall y no lo incluyas en el proxy público. `GET /metrics` solo existe en ese puerto y usa la IP del socket, no encabezados reenviados.
+
+Las series `alacarga_*` contienen solo agregados: cargas HTTP de portada, resultados de login, acciones confirmadas, respuestas y latencia de API, y estado de la última sincronización del catálogo. No incluyen personas, IP, ubicaciones ni rutas individuales. Las cargas de portada no son visitantes únicos; los turnos no son recargas. Los contadores del proceso se reinician al arrancar; usa `increase()` para comparar periodos en Prometheus. La lectura de métricas no refresca el catálogo ni genera acciones.
+
 ## API JSON (mismo origen)
 
 Fechas: milisegundos Unix; IDs: números. Errores: `{error: "mensaje", code: "CODE"}`. Cambios requieren `Content-Type: application/json`, `Origin` válido y, tras login, `X-CSRF-Token` recibido de sesión. Cookies HttpOnly, SameSite=Lax, Secure en HTTPS. Nunca guardar contraseña o sesión en localStorage.

@@ -28,6 +28,11 @@ function remoteChargeTargets(raw) {
 
 export function loadConfig(env = process.env) {
   const port = integer(env, 'PORT', 3000, 1, 65535);
+  const metricsPort = integer(env, 'METRICS_PORT', 0, 0, 65535);
+  const metricsPeers = (env.METRICS_PEERS ?? '').split(',').map(s => normalizeIp(s.trim())).filter(Boolean);
+  if (metricsPort === port || (metricsPort && !metricsPeers.length) || metricsPeers.some(ip => !isIP(ip))) {
+    throw new Error('Configuración inválida: METRICS_PORT y METRICS_PEERS requieren puerto separado e IPs explícitas.');
+  }
   let origin;
   try {
     const url = new URL(env.APP_ORIGIN ?? `http://localhost:${port}`);
@@ -51,6 +56,8 @@ export function loadConfig(env = process.env) {
     origin,
     host: env.HOST || '127.0.0.1',
     port,
+    metricsPort,
+    metricsPeers: new Set(metricsPeers),
     dataDir: resolve(env.DATA_DIR || resolve(ROOT, 'data')),
     publicDir: resolve(ROOT, 'public'),
     catalogCredentialsPath: env.EVSARE_CATALOG_CREDENTIALS ? resolve(env.EVSARE_CATALOG_CREDENTIALS) : null,

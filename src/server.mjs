@@ -10,6 +10,10 @@ export async function startServer() {
       app.server.once('error', reject);
       app.server.listen(app.config.port, app.config.host, resolve);
     });
+    if (app.metricsServer) await new Promise((resolve, reject) => {
+      app.metricsServer.once('error', reject);
+      app.metricsServer.listen(app.config.metricsPort, app.config.host, resolve);
+    });
     app.startWorkers();
   } catch (error) { await app.close(); throw error; }
   console.log(`A la caaarga!! HTTP iniciado. Catálogo de EVsare ${app.config.catalogCredentialsPath ? 'habilitado en modo lectura' : 'deshabilitado'}.`);

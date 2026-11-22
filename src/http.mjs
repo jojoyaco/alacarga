@@ -11,6 +11,7 @@ import { loadVapidKeys, createPushSender, PushWorker } from './push.mjs';
 import { TokenVault } from './token-vault.mjs';
 import { EvsareClient, EvsareAccess } from './evsare.mjs';
 import { ChargerCatalog, loadCatalogCredentials } from './charger-catalog.mjs';
+import { createMetrics, createMetricsServer } from './metrics.mjs';
 
 const STATIC = new Set(['/', '/index.html', '/app.js', '/app.css', '/styles.css', '/style.css', '/main.css', '/sw.js', '/service-worker.js', '/manifest.webmanifest', '/manifest.json', '/icon.svg', '/icons/icon.svg', '/icons/icon-192.png', '/icons/icon-512.png', '/icons/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/favicon.ico', '/offline.html']);
 STATIC.add('/proximity.js');
@@ -111,8 +112,12 @@ export function createApplication(options = {}) {
   const credentials = loadCatalogCredentials(config.catalogCredentialsPath);
   const catalog = options.catalog ?? (credentials ? new ChargerCatalog(credentials, { clock }) : null);
   const db = openDatabase(config.dataDir);
-  let keys, vault;
-  try { keys = loadVapidKeys(config.dataDir); vault = new TokenVault(db, config.dataDir, clock); } catch (error) { db.close(); throw error; }
+  let keys, vault, metrics;
+  try {
+    keys = loadVapidKeys(config.dataDir);
+    vault = new TokenVault(db, config.dataDir, clock);
+    if (config.metricsPort) metrics = createMetrics(db, catalog);
+  } catch (error) { vault?.destroy(); db.close(); throw error; }
   const service = new Service(db, config, clock);
   service.catalog = catalog;
   const auth = new Auth(db, config, clock);
@@ -124,6 +129,7 @@ export function createApplication(options = {}) {
   const refreshCatalog = () => catalog?.refresh().catch(() => {});
 
   const handler = async (request, response) => {
+    const started = metrics ? performance.now() : 0;
     headers(response, config);
     try {
       if (closed) fail(503, 'SHUTTING_DOWN', 'Servicio reiniciándose.');
@@ -131,6 +137,7 @@ export function createApplication(options = {}) {
       const url = new URL(request.url, config.origin);
       if (url.origin !== config.origin) fail(400, 'INVALID_URL', 'URL no válida.');
       const pathname = url.pathname;
+      if (metrics) response.once('finish', () => metrics.record(request.method, pathname, response.statusCode, (performance.now() - started) / 1000));
       const ip = clientIp(request, config.trustedProxies);
       service.rateLimit('http', ip, 300, 60000);
       if (!pathname.startsWith('/api/')) return await staticFile(request, response, pathname, config.publicDir);
@@ -261,6 +268,7 @@ export function createApplication(options = {}) {
     handler(req, res).catch(() => { log('HTTP_HANDLER_ERROR'); res.destroy(); });
   });
   server.maxRequestsPerSocket = 1000;
+  const metricsServer = metrics ? createMetricsServer(metrics, config.metricsPeers) : null;
   const startWorkers = () => {
     if (timer || closed) return;
     const work = () => {
@@ -281,14 +289,14 @@ export function createApplication(options = {}) {
     if (closed) return;
     closed = true;
     if (timer) clearInterval(timer);
-    const serverClosed = new Promise((resolve, reject) => {
-      if (!server.listening) return resolve();
-      server.close(error => error ? reject(error) : resolve());
-      server.closeIdleConnections();
+    const closeServer = listener => new Promise((resolve, reject) => {
+      if (!listener?.listening) return resolve();
+      listener.close(error => error ? reject(error) : resolve());
+      listener.closeIdleConnections();
     });
-    await Promise.all([serverClosed, pushWorker.stop(), catalog?.pending?.catch(() => {})]);
+    await Promise.all([closeServer(server), closeServer(metricsServer), pushWorker.stop(), catalog?.pending?.catch(() => {})]);
     vault.destroy();
     db.close();
   };
-  return { server, service, auth, db, config, pushWorker, startWorkers, close };
+  return { server, metricsServer, service, auth, db, config, pushWorker, startWorkers, close };
 }
