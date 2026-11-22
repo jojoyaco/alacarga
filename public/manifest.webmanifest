@@ -1,0 +1,22 @@
+{
+  "id": "/",
+  "name": "A la caaarga!!",
+  "short_name": "A la caaarga!!",
+  "description": "Cola comunitaria independiente para zonas de recarga. Sin reservas oficiales ni afiliación a EVsare.",
+  "lang": "es",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f6f6",
+  "theme_color": "#f6f6f6",
+  "categories": ["utilities", "travel"],
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Mi turno", "url": "/#my-turn", "description": "Consulta el estado de tu turno comunitario", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]},
+    {"name": "Cargadores", "url": "/#my-chargers", "description": "Encuentra una ubicación de recarga", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png"}]}
+  ]
+}

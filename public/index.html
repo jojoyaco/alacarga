@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f6f6f6">
+    <meta name="description" content="A la caaarga!! Cargadores, avisos y turnos comunitarios para vehículos eléctricos.">
+    <meta name="color-scheme" content="light dark">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://tile.openstreetmap.org; font-src 'self'; connect-src 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="A la caaarga!!">
+    <title>A la caaarga!!</title>
+    <link rel="icon" href="/icons/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <meta property="og:image" content="https://alacarga.jojoya.es/icons/icon-512.png">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+    <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-12h-7l1-8Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.6 8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4M12 2V1"/></symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24"><path d="M8 3v5m8-5v5M6 8h12v4a6 6 0 0 1-12 0V8Zm6 10v4"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.2"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 10a8 8 0 1 0-1 7m1-12v5h-5"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6c0 5-8 11-8 11S4 16 4 11V5l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+      <symbol id="i-settings" viewBox="0 0 24 24"><path d="M4 7h6m4 0h6M4 17h10m4 0h2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="17" r="2"/></symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="header-inner wrap">
+        <a class="brand" href="#main" title="A la caaarga!! — Inicio">
+          <img src="/icons/icon-192.png" width="38" height="38" alt="" title="Chiquito Energético">
+          <span>A la caaarga!!</span>
+        </a>
+        <nav class="desktop-nav" aria-label="Navegación principal">
+          <a href="#zones" data-community-nav hidden>Zonas comunitarias</a>
+          <a href="#my-chargers" id="desktop-chargers-link" hidden>Cargadores</a>
+          <a href="#my-turn" data-session-only hidden>Mi turno</a>
+          <a href="#how-it-works">Cómo funciona</a>
+        </nav>
+        <nav id="workspace-nav" class="workspace-nav" aria-label="Secciones de A la caaarga!!" hidden>
+          <a href="#my-chargers" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-plug"/></svg>Cargadores</a>
+          <a href="#my-turn"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Mi turno</a>
+          <a href="#my-recharges"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg>Mis cargas</a>
+          <a href="#account-card"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Mi perfil</a>
+        </nav>
+        <div class="header-actions">
+          <span class="connection-chip" id="connection-chip" data-state="loading"><span class="status-dot"></span><span id="connection-label">Conectando</span></span>
+          <button class="icon-button settings-button" id="settings-open" type="button" aria-label="Personalizar A la caaarga!!" title="Personalizar A la caaarga!!"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg></button>
+          <button class="button button-dark button-small" id="account-open" type="button" data-open-auth="login" data-session-only hidden><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span id="account-button-label">Ver mi cuenta</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="wrap" tabindex="-1">
+      <noscript><p class="notice notice-error">A la caaarga!! necesita JavaScript para consultar el servidor y gestionar tu turno. No hay disponibilidad almacenada ni acciones sin conexión.</p></noscript>
+
+      <div id="connection-banner" class="notice notice-warning" role="status" hidden><div><strong id="connection-banner-title">No podemos consultar el servidor.</strong><p id="connection-banner-copy">No se puede verificar la disponibilidad ni cambiar tu turno. Volveremos a intentarlo.</p></div><button class="button button-outline button-small" id="retry-button" type="button">Reintentar</button></div>
+      <div id="feedback" class="notice feedback" hidden><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p id="feedback-message"></p><button class="icon-button" id="feedback-dismiss" type="button" aria-label="Cerrar mensaje"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+      <div id="polite-announcer" class="sr-only" role="status" aria-live="polite"></div>
+      <div id="error-announcer" class="sr-only" role="alert"></div>
+
+      <a href="#my-turn" class="active-turn-summary" id="active-turn-summary" hidden><span class="active-turn-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><span><small>LO IMPORTANTE, A MANO</small><strong id="active-turn-summary-text">Tu turno</strong></span><span class="active-turn-link">Ver mi turno<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+
+      <div class="workspace" data-session-only hidden>
+        <div class="explore-column">
+        <section id="my-chargers" class="charger-panel panel" aria-labelledby="chargers-heading" tabindex="-1" hidden>
+          <div class="charger-header">
+            <div><p class="eyebrow section-eyebrow">TU CUENTA EVSARE</p><h1 id="chargers-heading">Cargadores</h1></div>
+            <span class="charger-header-icon" aria-hidden="true"><svg class="icon"><use href="#i-plug"/></svg></span>
+          </div>
+          <p class="charger-intro">Consulta tus puntos EVsare. <span>Guardar un favorito no activa avisos ni te pone en cola.</span></p>
+          <div class="charger-refresh-row"><div class="charger-display-controls">
+              <button class="button button-outline button-small" type="button" id="chargers-map-view" aria-expanded="false" aria-controls="charger-map" aria-describedby="charger-map-privacy" hidden><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Ver mapa</span></button>
+              <button class="button button-outline refresh-button" id="chargers-refresh" type="button" aria-label="Actualizar cargadores" title="Actualizar cargadores"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/><use class="refresh-pending" href="#i-clock"/></svg></button>
+            </div><p class="profile-status" id="chargers-status" role="status" aria-atomic="true"></p><button class="text-button" id="chargers-reconnect" type="button" hidden>Reconectar con EVsare</button></div>
+          <div id="chargers-results" hidden>
+            <span class="sr-only" id="charger-map-privacy">Al abrir o acercar el mapa, OpenStreetMap recibe solicitudes de imágenes del área visible. Tu posición, historial y datos de cuenta no se envían.</span>
+            <button type="button" class="text-button" id="charger-map-search" aria-expanded="false" aria-controls="charger-search-row" hidden>Buscar en el mapa</button>
+            <div class="charger-filter-row" id="charger-search-row"><div class="search-field charger-search"><label class="sr-only" for="chargers-search">Buscar cargadores por nombre o dirección</label><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="chargers-search" type="search" placeholder="Buscar nombre o dirección…" autocomplete="off" maxlength="150"></div><button type="button" id="chargers-only-favorites" class="button button-outline button-small" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Solo favoritos</button></div>
+            <p class="fine-print charger-count" id="chargers-count" role="status"></p>
+            <div id="charger-map" hidden>
+              <div class="charger-map-controls"><button id="charger-map-overview" class="text-button" type="button" hidden>Volver al mapa general</button><div class="charger-map-zoom" role="group" aria-label="Zoom del mapa"><button id="charger-map-zoom-out" class="button button-outline button-small" type="button" aria-label="Alejar el mapa" disabled>−</button><button id="charger-map-zoom-in" class="button button-outline button-small" type="button" aria-label="Acercar el mapa" disabled>+</button></div></div>
+              <div id="charger-map-base" hidden>
+                <div class="charger-map-canvas" id="charger-map-canvas" role="group" aria-label="Ubicaciones EVsare en OpenStreetMap" hidden>
+                  <div id="charger-map-tiles" aria-hidden="true"></div>
+                  <div id="charger-map-markers"></div>
+                </div>
+                <section id="charger-map-group" aria-labelledby="charger-map-group-heading" hidden>
+                  <header><h3 id="charger-map-group-heading" class="charger-picker-label">Elegir ubicación</h3><button id="charger-map-group-close" class="text-button" type="button" aria-label="Cerrar ubicaciones del mapa">Cerrar</button></header>
+                  <ul id="charger-map-members" class="charger-sites" role="list"></ul>
+                </section>
+                <div class="charger-map-credit fine-print">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors <span aria-hidden="true">·</span> <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">Informar de un error del mapa</a></div>
+              </div>
+              <p class="fine-print" id="charger-map-status" role="status"></p>
+            </div>
+            <div class="charger-browser"><div class="charger-location-picker">
+            <h3 id="charger-map-list-heading" class="charger-picker-label" hidden>Elegir ubicación</h3>
+            <ul id="charger-sites" class="charger-sites" role="list" aria-label="Ubicaciones EVsare"></ul>
+            </div><div id="charger-site-details" class="charger-details"></div></div>
+          </div>
+        </section>
+        <section id="zones" class="zones-section" aria-labelledby="zones-heading">
+          <div class="section-heading"><div><p class="eyebrow section-eyebrow">ESPACIOS COMPARTIDOS</p><h2 id="zones-heading">Zonas comunitarias<span class="count-badge" id="zones-count" aria-label="Número de zonas">—</span></h2></div><svg class="section-mark icon" aria-hidden="true"><use href="#i-grid"/></svg></div>
+          <form class="filters" id="filter-form" role="search" aria-label="Filtrar zonas">
+            <div class="search-field"><label class="sr-only" for="zone-search">Buscar zona</label><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="zone-search" type="search" name="search" placeholder="Buscar una zona…" autocomplete="off" maxlength="150"></div>
+            <div class="filter-connector"><label class="sr-only" for="connector-filter">Filtrar por conector</label><select id="connector-filter" name="connector"><option value="ANY">Todos los conectores</option><option value="TYPE2">Tipo 2</option><option value="CCS2">CCS2</option><option value="CHADEMO">CHAdeMO</option><option value="SCHUKO">Schuko</option></select></div>
+          </form>
+          <div class="filter-meta"><label class="checkbox-label"><input type="checkbox" id="following-filter"><span>Solo zonas que sigo</span></label><span id="last-sync" class="subtle">Consultando…</span></div>
+          <div class="vehicle-preference" id="vehicle-preference" hidden><span id="vehicle-preference-text"></span><button class="text-button" id="vehicle-settings-open" type="button">Cambiar preferencias</button></div>
+          <p id="filter-results" class="sr-only" role="status"></p>
+          <div class="zone-list" id="zone-list" aria-busy="true"></div>
+          <div class="empty-state" id="zones-empty"><span class="empty-symbol"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><p class="eyebrow" id="empty-eyebrow">UN MOMENTO</p><h3 id="empty-title">Buscando zonas publicadas…</h3><p id="empty-description">Estamos consultando la información del servidor.</p><button class="button button-outline button-small" id="clear-filters" type="button" hidden>Limpiar filtros</button><a class="text-link" id="empty-admin-link" href="#admin-panel" hidden>Crear la primera zona<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+          <p class="zones-disclaimer"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>Un estado disponible no reserva ni bloquea físicamente un cargador. Confirma siempre su estado al llegar.</p>
+        </section>
+        </div>
+
+        <aside class="personal-column" aria-label="Tu turno y tus avisos">
+          <section class="turn-card panel" id="my-turn" aria-labelledby="turn-heading" data-state="EMPTY" tabindex="-1">
+            <div class="panel-heading"><div class="heading-with-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><h2 id="turn-heading">Mi turno</h2></div><span class="badge badge-neutral" id="turn-state-badge">Sin turno</span></div>
+            <div id="turn-empty"><span class="turn-empty-icon" aria-hidden="true"><svg class="icon"><use href="#i-clock"/></svg></span><div><h3 id="turn-empty-title">Consulta tu turno</h3><p id="turn-empty-copy">Inicia sesión para apuntarte a una cola y consultar tu posición.</p><button class="button button-dark button-small" id="turn-login" type="button" data-open-auth="login">Iniciar sesión<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button><a class="button button-outline button-small" id="turn-explore" href="#zones" hidden><span>Explorar zonas</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div></div>
+            <div id="turn-details" hidden>
+              <p class="turn-kicker" id="turn-kicker"></p><h3 id="turn-zone"></h3><p id="turn-resource" class="subtle"></p><p id="turn-planned-duration" class="fine-print" hidden></p>
+              <div class="turn-metric" id="turn-position-block"><strong id="turn-position">—</strong><span>tu posición<br>en la cola</span></div>
+              <p class="people-ahead" id="turn-people-ahead" hidden></p><div class="wait-estimate" id="turn-wait-estimate" hidden><strong id="turn-wait-time">Sin estimación suficiente</strong><p id="turn-wait-reason"></p><p class="fine-print">Orientación del servidor según datos declarados. Depende de liberaciones reales y conectores compatibles; no es una garantía ni una cuenta atrás.</p></div>
+              <div class="turn-timer-block" id="turn-timer-block" hidden><span id="turn-timer-label">Tiempo para responder</span><strong class="turn-timer" id="turn-timer" role="timer" aria-live="off">—</strong><p id="turn-deadline" class="subtle"></p></div>
+              <p class="turn-explanation" id="turn-explanation"></p>
+              <p class="turn-unverified" id="turn-unverified" hidden>Último estado conocido. No se puede verificar el turno sin conexión.</p>
+              <div class="charge-finished-notice" id="charge-finished-notice" hidden><strong>Carga finalizada; plaza pendiente de liberar</strong><p>Fin confirmado manualmente por administración. Retira el coche antes de confirmar que has liberado la plaza.</p></div>
+              <form id="estimate-form" class="estimate-form" hidden><label for="expected-release">Hora prevista de liberación <span class="optional">opcional</span></label><input id="expected-release" name="expectedReleaseAt" type="datetime-local" step="60" aria-describedby="estimate-hint"><p id="estimate-hint" class="fine-print">Es una previsión tuya, no una medición de la batería. Al llegar la hora se solicitará un aviso; la plaza no se libera sola.</p><p id="current-estimate" class="estimate-current"></p><div class="estimate-actions"><button type="submit" class="button button-outline button-small">Guardar previsión</button><button id="clear-estimate" type="button" class="text-button">Quitar previsión</button></div><p id="estimate-message" class="form-message" role="status"></p></form>
+              <div class="turn-actions"><button class="button button-primary full-width" type="button" id="accept-turn" hidden>Aceptar turno · Voy<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></button><button class="button button-primary full-width" type="button" id="start-turn" hidden>Ya estoy cargando<svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></button><button class="button button-primary full-width" type="button" id="release-turn" hidden>He liberado la plaza<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></button><button class="button button-outline full-width" type="button" id="complete-turn" hidden>Completar turno sin declarar plaza libre</button><button class="button button-outline full-width" type="button" id="leave-turn" hidden>Cancelar turno</button></div>
+              <div class="turn-return-actions"><a class="button button-outline button-small" id="new-turn-link" href="#zones" hidden>Volver a las zonas</a><button class="button button-outline button-small" type="button" id="rejoin-turn" hidden>Volver a la cola</button></div>
+              <p id="turn-server-note" class="fine-print" hidden>El servidor valida el plazo. Aceptar un turno no es una reserva oficial.</p>
+            </div>
+            <p id="turn-announcement" class="sr-only" role="status" aria-live="polite"></p>
+          </section>
+
+          <section class="push-card panel" id="notifications" aria-labelledby="push-heading" data-state="inactive">
+            <div class="push-topline"><div class="heading-with-icon"><span class="push-icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span><h2 id="push-heading">Notificaciones</h2></div><span class="badge badge-neutral" id="push-state">Sin activar</span></div><p id="push-description">Recibe avisos cuando te ofrezcan un turno o haya novedades en las zonas que sigues.</p>
+            <p class="push-status" id="push-status">Inicia sesión para configurar tus notificaciones.</p>
+            <button class="button button-dark full-width" id="enable-push" type="button" hidden><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>Activar notificaciones</button>
+            <div class="push-secondary-actions"><button class="text-button" id="test-push" type="button" hidden>Probar aviso</button><button class="text-button" id="disable-push" type="button" hidden>Desactivar en este dispositivo</button></div>
+            <p id="ios-notice" class="fine-print" hidden>En iPhone o iPad necesitas iOS 16.4 o posterior: abre esta página en Safari, pulsa Compartir → Añadir a pantalla de inicio y abre el nuevo icono antes de activar los avisos.</p>
+            <p class="fine-print" id="push-delivery-note">Los avisos pueden retrasarse o no llegar. Abrirlos nunca acepta ni libera un turno.</p>
+            <section class="activity-details" id="activity-panel" aria-labelledby="activity-heading" hidden><h3 id="activity-heading">Actividad reciente <span id="notification-count" class="count-badge" hidden></span></h3><p class="subtle" id="notifications-empty">Aún no hay avisos.</p><ul id="notification-list" class="notification-list"></ul></section>
+          </section>
+
+          <section id="my-recharges" class="recharges-section panel" aria-labelledby="recharges-heading" tabindex="-1" hidden>
+            <div class="heading-with-icon"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg><h2 id="recharges-heading">Mis cargas</h2></div>
+            <div class="recharges-toolbar"><p class="fine-print">Últimas 20 recargas de IBILSARE</p><button class="button button-outline refresh-button" id="recharges-refresh" type="button" aria-label="Actualizar historial" title="Actualizar historial"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/><use class="refresh-pending" href="#i-clock"/></svg></button></div>
+            <p id="recharges-status" class="profile-status" role="status" aria-atomic="true"></p>
+            <figure id="recharges-chart" class="recharges-chart" hidden><figcaption>Resumen de recargas</figcaption><div class="recharges-metrics" role="group" aria-label="Mostrar en el gráfico"><button type="button" data-recharge-metric="energy" aria-pressed="true">Energía</button><button type="button" data-recharge-metric="cost" aria-pressed="false">Coste</button><button type="button" data-recharge-metric="time" aria-pressed="false">Tiempo</button></div><p id="recharges-total" class="recharges-total" aria-live="polite"></p><div id="recharges-plot"></div><p id="recharges-unit-note" class="fine-print"></p></figure>
+            <details id="recharges-history" class="recharges-history" hidden><summary>Ver recargas individuales <span id="recharges-history-count" class="count-badge"></span></summary><ul id="recharges-list" class="recharges-list" hidden></ul><p class="fine-print">Si no hay hora de fin, no sabemos si la carga continúa.</p></details>
+          </section>
+
+          <section id="account-card" class="account-card panel" aria-labelledby="account-heading" tabindex="-1" hidden>
+            <div class="heading-with-icon"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><h2 id="account-heading">Mi perfil</h2></div>
+            <div class="account-identity"><strong id="account-username"></strong><span id="account-role" class="badge badge-neutral"></span><button class="button button-outline refresh-button" id="profile-refresh" type="button" aria-label="Actualizar cuenta" title="Actualizar cuenta"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/><use class="refresh-pending" href="#i-clock"/></svg></button></div>
+            <div id="evsare-profile" class="evsare-profile" hidden>
+              <section class="profile-details-section" aria-label="Datos de EVsare">
+              <p id="profile-status" class="profile-status" role="status" aria-live="polite" aria-atomic="true"></p>
+              <dl id="profile-details" class="profile-details" hidden><div><dt>Nombre</dt><dd id="profile-name"></dd></div><div><dt>Correo</dt><dd id="profile-email"></dd></div><div><dt>Privacidad</dt><dd id="profile-privacy"></dd></div></dl>
+              <p id="profile-official-action" class="profile-official-action" hidden>Los cambios de contraseña y los consentimientos se gestionan en la app oficial de EVsare. A la caaarga!! no los acepta ni modifica por ti.</p>
+              <button class="text-button" id="profile-reconnect" type="button" hidden>Reconectar con EVsare</button>
+              </section>
+              <div id="profile-rfid"></div>
+            </div>
+            <p class="fine-print account-signout-note">Cerrar sesión no cancela tu turno. Desactivaremos los avisos en este dispositivo.</p><button class="text-button" id="logout-button" type="button">Cerrar sesión</button>
+          </section>
+        </aside>
+      </div>
+
+      <section id="admin-section" class="admin-section" aria-labelledby="admin-heading" hidden>
+        <details id="admin-panel" class="panel"><summary class="admin-summary"><span class="heading-with-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span id="admin-heading">Administración</span></span><span class="badge badge-amber">Fuente manual</span></summary><div class="admin-content"><p class="admin-intro">Publica zonas y registra observaciones. Estos cambios no controlan el cargador ni consultan al operador. Marcar un recurso disponible puede generar una oferta de turno.</p>
+          <div class="admin-forms">
+            <form id="create-zone-form" class="admin-form"><h3>Crear zona</h3><fieldset><legend class="sr-only">Datos de la zona</legend><label for="zone-name">Nombre de la zona</label><input id="zone-name" name="name" required maxlength="120" autocomplete="off" placeholder="Nombre reconocible de la zona"><label for="zone-description">Descripción</label><textarea id="zone-description" name="description" rows="3" maxlength="1000" placeholder="Cómo llegar o qué conviene saber"></textarea><div class="form-grid"><div><label for="zone-latitude">Latitud <span class="optional">opcional</span></label><input id="zone-latitude" name="latitude" type="number" min="-90" max="90" step="any" inputmode="decimal"></div><div><label for="zone-longitude">Longitud <span class="optional">opcional</span></label><input id="zone-longitude" name="longitude" type="number" min="-180" max="180" step="any" inputmode="decimal"></div></div><label for="zone-radius">Radio en metros <span class="optional">opcional</span></label><input id="zone-radius" name="radiusMeters" type="number" min="1" step="1" inputmode="numeric"><button class="button button-dark" type="submit">Crear zona<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></fieldset><p class="form-message" id="create-zone-message" role="status"></p></form>
+            <form id="create-resource-form" class="admin-form"><h3>Añadir recurso</h3><fieldset><legend class="sr-only">Datos del recurso</legend><label for="resource-zone">Zona del recurso</label><select id="resource-zone" name="zoneId" required><option value="">Selecciona una zona</option></select><label for="resource-name">Nombre del recurso</label><input id="resource-name" name="name" required maxlength="120" autocomplete="off" placeholder="Identificador del punto físico"><label for="resource-connector">Conector del recurso</label><select id="resource-connector" name="connector" required><option value="TYPE2">Tipo 2</option><option value="CCS2">CCS2</option><option value="CHADEMO">CHAdeMO</option><option value="SCHUKO">Schuko</option></select><label for="resource-power">Potencia (kW)</label><input id="resource-power" name="powerKw" type="number" min="0.1" step="any" required inputmode="decimal"><p class="fine-print">Una unidad física independiente. Su estado inicial será desconocido.</p><button class="button button-dark" type="submit">Añadir recurso<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></fieldset><p class="form-message" id="create-resource-message" role="status"></p></form>
+          </div>
+          <div class="admin-observations"><h3>Actualizar estados manuales</h3><p class="subtle">Cada actualización registra la hora del servidor. Un dato antiguo deja de considerarse disponible.</p><p id="admin-resources-empty" class="subtle">Añade un recurso para registrar su primer estado.</p><div id="admin-resource-list"></div></div>
+        </div></details>
+      </section>
+
+      <div class="landing-sign-in" id="landing-sign-in"><button class="button button-primary" id="landing-login" type="button" data-open-auth="login">Iniciar sesión<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+
+      <section class="how-section" id="how-it-works" aria-labelledby="how-heading"><div class="how-heading"><p class="eyebrow section-eyebrow">FÁCIL, COMO DEBERÍA SER</p><h2 id="how-heading">Tres pasos. Menos vueltas.</h2><p>«Voy», «estoy cargando», «ya he liberado». Todo en su sitio.</p></div><div class="steps-grid"><article class="step"><span class="step-number">01</span><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><h3>Encuentra tu ubicación</h3><p>Busca una ubicación y filtra por conector. Cada plaza es independiente: puede haber varias libres o varias personas cargando.</p></article><article class="step"><span class="step-number">02</span><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><h3>Sigue o haz cola. Tú eliges.</h3><p><strong>Seguir</strong> te informa de disponibilidad. <strong>Ponerme a la cola</strong> solicita un turno comunitario. Son dos acciones distintas.</p></article><article class="step"><span class="step-number">03</span><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg><h3>Carga y da paso al siguiente</h3><p id="offer-instructions">Acepta la oferta cuando te toque. Confirma que estás cargando, comparte tu hora prevista y, solo al retirar el coche, pulsa «He liberado la plaza».</p></article></div></section>
+
+      <section class="faq-section" aria-labelledby="faq-heading"><h2 id="faq-heading">Sin letra pequeña.</h2><div class="faq-list"><details><summary>¿Esto reserva un cargador de EVsare?</summary><p>No. A la caaarga!! es una iniciativa independiente, sin afiliación a EVsare. Organizamos una cola comunitaria, no una reserva oficial: no bloqueamos cargadores, no iniciamos sesiones de carga ni garantizamos disponibilidad física.</p></details><details><summary>¿Qué significan manual, obsoleto y desconocido?</summary><p>Manual significa que administración registró el estado. «Comunicado por usuario» es una declaración de quien ocupa la plaza. Obsoleto significa que una observación ya es demasiado antigua. Desconocido indica que no hay un estado utilizable. Solo una observación disponible y reciente puede generar una oferta; un turno asignado también afecta a los recursos disponibles para la cola. La ocupación declarada se mantiene hasta una liberación explícita o corrección administrativa.</p></details><details><summary>¿Qué pasa si no respondo a tiempo?</summary><p>Una oferta caduca al terminar su plazo. La cola puede avanzar a la siguiente persona compatible si el recurso sigue disponible. No vuelves a la cola automáticamente. Después de aceptar también existe un plazo de llegada; consulta el contador. Una vez que confirmas «Estoy cargando», tu previsión no libera la plaza automáticamente.</p></details><details><summary>¿El aviso confirma que mi batería está cargada?</summary><p>No. La hora prevista genera un recordatorio, no una medición. Administración puede confirmar manualmente el fin de carga y enviarte otro aviso. En ambos casos la plaza sigue ocupada hasta que retires el coche y pulses «He liberado la plaza». Los avisos push no tienen entrega garantizada.</p></details><details><summary>¿Y si ya estoy cargando al abrir la app?</summary><p>Usa «Ya estoy cargando aquí» en el recurso que ocupas físicamente. Sirve para registrar una ocupación preexistente, no para saltarte la cola. El servidor solo lo permite si no tienes otro turno y no desplazas a ninguna persona esperando ni a un turno asignado.</p></details><details id="install-help"><summary>¿Puedo instalar la app en mi teléfono?</summary><p>Sí. En Android, usa la opción «Instalar aplicación» del navegador. En iPhone o iPad, abre Safari y elige Compartir → Añadir a pantalla de inicio. Para notificaciones en iOS necesitas la app instalada y iOS 16.4 o posterior.</p><p>Sin conexión puedes abrir la interfaz, pero nunca consultar disponibilidad ni aceptar un turno. No guardamos datos de disponibilidad para mostrarlos como actuales.</p><button class="button button-outline button-small" id="install-app" type="button" hidden>Instalar A la caaarga!!</button></details></div></section>
+    </main>
+
+    <footer class="site-footer wrap"><a class="brand footer-brand" href="#main"><img src="/icons/icon-192.png" width="28" height="28" alt=""><span>A la caaarga!!</span></a><p>Independiente y sin afiliación a EVsare.</p><a href="#how-it-works" class="text-link">Ayuda<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></footer>
+    <nav class="mobile-nav" aria-label="Accesos rápidos" data-session-only hidden><a href="#zones" data-community-nav hidden><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg><span>Zonas</span></a><a id="mobile-chargers-link" href="#my-chargers" hidden><svg class="icon" aria-hidden="true"><use href="#i-plug"/></svg><span>Cargadores</span></a><a id="mobile-turn-link" href="#my-turn"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>Mi turno</span></a><a href="#notifications"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span>Avisos</span></a></nav>
+
+    <dialog id="settings-dialog" class="settings-dialog" aria-labelledby="settings-heading"><div class="settings-shell"><button class="icon-button dialog-close" id="settings-close" type="button" aria-label="Cerrar ajustes"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><h2 id="settings-heading">Preferencias del dispositivo</h2><p class="settings-intro">No cambian tu cuenta ni tu turno.</p>
+      <p class="fine-print">Icono: adaptación en blanco y negro del <a class="text-link" href="https://commons.wikimedia.org/wiki/File:Chiquito_de_la_Calzada.jpg" target="_blank" rel="noopener noreferrer">retrato de Chiquito</a>, foto de Daniel Capilla sobre un mural de Juan María Rivero y Raúl Zambrana. <a class="text-link" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>.</p>
+      <form id="preferences-form">
+        <fieldset class="settings-section"><legend>Apariencia</legend><div class="settings-grid"><div class="setting-field"><label for="preference-theme">Tema</label><select id="preference-theme" name="theme"><option value="system">Seguir al sistema</option><option value="light">Claro</option><option value="dark">Oscuro</option></select></div><div class="setting-field"><label for="preference-density">Espaciado</label><select id="preference-density" name="density"><option value="comfortable">Cómodo</option><option value="compact">Compacto</option></select></div></div></fieldset>
+        <fieldset class="settings-section"><legend>Mi coche <span class="optional">opcional</span></legend><p class="settings-section-description">Información que tú declaras. No consultamos el vehículo ni medimos batería, carga o autonomía.</p><div class="settings-grid"><div class="setting-field setting-wide"><label for="vehicle-alias">Alias del coche</label><input id="vehicle-alias" name="vehicleAlias" maxlength="60" autocomplete="off" placeholder="El nombre que tú prefieras"></div><div class="setting-field"><label for="vehicle-make">Marca</label><input id="vehicle-make" name="vehicleMake" maxlength="60" autocomplete="off"></div><div class="setting-field"><label for="vehicle-model">Modelo</label><input id="vehicle-model" name="vehicleModel" maxlength="80" autocomplete="off"></div><div class="setting-field"><label for="vehicle-capacity">Capacidad declarada (kWh)</label><input id="vehicle-capacity" name="vehicleCapacity" type="number" min="0.1" max="1000" step="any" inputmode="decimal"></div><div class="setting-field"><label for="vehicle-connector">Conector preferido</label><select id="vehicle-connector" name="vehicleConnector"><option value="ANY">Sin preferencia</option><option value="TYPE2">Tipo 2</option><option value="CCS2">CCS2</option><option value="CHADEMO">CHAdeMO</option><option value="SCHUKO">Schuko</option></select></div><div class="setting-field setting-wide"><label for="vehicle-duration">Duración preferida de tus turnos (min) <span class="optional">opcional</span></label><input id="vehicle-duration" name="vehicleDuration" type="number" min="1" max="720" step="1" inputmode="numeric" placeholder="Sin duración predeterminada"></div></div><p class="field-hint">Conector y duración precargan tus selecciones; siempre puedes cambiarlos. No inician un turno ni miden tu batería. Un catálogo oficial de vehículos sigue pendiente.</p><p class="settings-privacy"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span>Este perfil no se envía al servidor. Permanece en este navegador incluso al cerrar sesión. No incluyas matrícula, VIN ni información de otras personas. Puedes borrarlo con Restablecer y guardar. Solo el conector y la duración elegidos para un turno se envían al entrar en cola.</span></p></fieldset>
+        <p id="preferences-message" class="form-message" role="status"></p><div class="settings-actions"><button class="text-button" id="reset-preferences" type="button">Restablecer</button></div>
+      </form>
+    </div></dialog>
+
+    <dialog id="auth-dialog" class="auth-dialog" aria-labelledby="auth-heading"><div class="auth-shell"><button class="icon-button dialog-close" id="auth-close" type="button" aria-label="Cerrar ventana de cuenta"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button><img src="/icons/icon-192.png" width="42" height="42" alt=""><p class="eyebrow section-eyebrow">TU TIEMPO CUENTA</p><h2 id="auth-heading">Entra con EVsare.</h2>
+      <div class="auth-fields">
+        <p id="auth-reconnect-note" class="auth-reconnect-note" hidden>Vuelve a entrar con la misma cuenta EVsare. Reconectar no cancela tu turno ni tus zonas seguidas en A la caaarga!!.</p>
+        <p id="evsare-login-disclosure" class="auth-disclosure">Al iniciar sesión, A la caaarga!! envía tus credenciales a IBILcloud (<span class="auth-origin">appkbs.ibilcloud.com</span>) para verificar el acceso. Tu contraseña no se guarda; solo la procesamos para iniciar sesión. El token que devuelve EVsare se guarda cifrado en el servidor para mantener tu sesión.</p>
+        <p id="evsare-authorized-use" class="auth-help"><strong>Uso autorizado.</strong> Usa solo tu propia cuenta de EVsare y respeta las condiciones del proveedor. No introduzcas credenciales ajenas, compartidas ni obtenidas sin autorización. A la caaarga!! es un cliente independiente y no está afiliado a EVsare ni a IBIL.</p>
+        <form id="login-form" method="post" action="/api/login" aria-describedby="evsare-login-disclosure evsare-authorized-use"><fieldset><legend class="sr-only">Iniciar sesión con EVsare</legend><label for="login-username">Correo o usuario EVsare</label><input id="login-username" name="username" type="text" autocomplete="username" minlength="1" maxlength="254" required spellcheck="false" autocapitalize="none" aria-describedby="login-user-hint"><p class="field-hint" id="login-user-hint">El correo o usuario que utilizas en EVsare, hasta 254 caracteres.</p><label for="login-password">Contraseña EVsare</label><input id="login-password" name="password" type="password" autocomplete="current-password" minlength="1" maxlength="1024" required aria-describedby="login-password-hint"><p class="field-hint" id="login-password-hint">Tu contraseña actual de EVsare. Se envía tal como la escribes, incluidos los espacios.</p><button type="submit" class="button button-primary full-width">Entrar con EVsare<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></fieldset><p id="login-message" class="form-message" role="alert"></p></form>
+        <p class="auth-help">¿No tienes cuenta o necesitas recuperar tu contraseña? Usa la app oficial de EVsare. Aquí no se crean cuentas locales ni se cambian contraseñas o consentimientos.</p>
+      </div>
+    </div></dialog>
+
+    <template id="zone-template"><article class="zone-card"><div class="zone-top"><div class="zone-title-group"><span class="zone-icon"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><div><p class="zone-eyebrow">ZONA COMUNITARIA</p><h3 data-field="name"></h3></div></div><span class="badge" data-field="available"></span></div><p class="zone-description" data-field="description"></p><p class="zone-location subtle" data-field="location" hidden></p><div class="zone-resource-heading"><span>RECURSOS</span><span class="source-label">Fuente manual</span></div><ul class="resource-list"></ul><p class="zone-no-resources subtle" hidden>Esta zona aún no tiene recursos publicados.</p><div class="zone-queue-summary"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span data-field="waiting"></span></div><div class="zone-actions"><button type="button" class="button button-outline follow-button" data-action="follow" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg><span data-field="follow-label">Seguir zona</span></button><form class="join-form"><div class="join-main"><label class="sr-only">Conector para mi turno</label><select name="connector"><option value="ANY">Cualquier conector</option><option value="TYPE2">Tipo 2</option><option value="CCS2">CCS2</option><option value="CHADEMO">CHAdeMO</option><option value="SCHUKO">Schuko</option></select><button class="button button-primary" type="submit" data-action="join"><span data-field="join-label">Ponerme a la cola</span><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button></div><details class="join-options"><summary>Duración prevista <span class="optional">opcional</span></summary><label>Tiempo de carga previsto (min)</label><input name="plannedMinutes" type="number" min="1" max="720" step="1" inputmode="numeric" placeholder="Sin previsión"><p class="fine-print">Ayuda a orientar a quienes esperan. No mide la batería ni libera la plaza automáticamente.</p></details></form></div><p class="zone-action-hint">Seguir una zona no te añade a la cola.</p></article></template>
+    <template id="resource-template"><li class="resource"><div class="resource-main"><span class="connector-icon"><svg class="icon" aria-hidden="true"><use href="#i-plug"/></svg></span><div class="resource-info"><strong data-field="name"></strong><span data-field="spec"></span></div><div class="resource-state"><span class="resource-status" data-field="status"><span class="status-dot"></span><span data-field="status-label"></span></span><time data-field="observed"></time></div></div><p class="resource-source" data-field="source"></p><p class="resource-estimate" data-field="estimate" hidden></p><p class="resource-finished" data-field="finished" hidden>Carga finalizada; plaza pendiente de liberar. Confirmación manual.</p><button class="text-button claim-button" type="button" data-action="claim" hidden>Ya estoy cargando aquí</button><p class="claim-hint fine-print" hidden>Solo para registrar la plaza que ya ocupas, sin saltarte la cola.</p></li></template>
+    <template id="admin-resource-template"><form class="admin-status-form"><div class="admin-resource-identity"><strong data-field="name"></strong><span data-field="zone" class="subtle"></span><span data-field="current" class="fine-print"></span></div><div class="admin-status-controls"><label class="sr-only">Nuevo estado manual</label><select name="status" required><option value="">Selecciona un estado</option><option value="AVAILABLE">Disponible</option><option value="BUSY">Ocupado</option><option value="RESERVED">Reservado</option><option value="RECHARGING">Cargando</option><option value="MAINTENANCE">Mantenimiento</option><option value="UNKNOWN">Desconocido</option></select><button type="submit" class="button button-outline button-small">Actualizar estado</button></div><div class="admin-finish"><button type="button" class="text-button" data-action="charge-finished">Confirmar fin de carga</button><p class="fine-print">Señal manual para avisar al ocupante, no telemetría. Solo funciona con una persona en «Estoy cargando»; nunca libera la plaza. «Obsoleto» se calcula automáticamente.</p></div><p class="form-message" role="status"></p></form></template>
+    <dialog id="charge-dialog" class="settings-dialog" aria-labelledby="charge-title" aria-describedby="charge-place">
+      <div class="settings-shell">
+        <h2 id="charge-title">¿Quieres cargar?</h2>
+        <p id="charge-place" class="subtle"></p>
+        <div id="charge-options" class="charge-options" role="group" aria-label="Verifica el conector"></div>
+        <p id="charge-help" class="fine-print"></p>
+        <p id="charge-result" class="form-message" role="status"></p>
+        <section id="charge-recovery" class="charge-recovery" aria-label="Orden anterior" hidden>
+          <button type="button" id="charge-check" class="text-button">Actualizar estado</button>
+          <p id="charge-check-result" class="fine-print" role="status"></p>
+          <div id="charge-finish-area" hidden>
+            <label class="checkbox-label"><input id="charge-finish-confirm" type="checkbox">Quiero detener esta recarga en EVsare.</label>
+            <button type="button" id="charge-finish" class="button button-outline button-small" disabled>Finalizar carga</button>
+            <p class="fine-print">El envío de la orden no confirma que el coche haya terminado ni libera la plaza.</p>
+          </div>
+        </section>
+        <div class="charge-dialog-actions"><button type="button" id="charge-close" class="button button-outline">Volver</button><button type="button" id="charge-submit" class="button button-primary" disabled>Cargar</button></div>
+      </div>
+    </dialog>
+    <dialog id="queue-plan-dialog" class="settings-dialog" aria-labelledby="queue-plan-title"><div class="settings-shell">
+      <h2 id="queue-plan-title">Ponerme en cola</h2><p id="queue-plan-site" class="subtle"></p>
+      <form id="queue-plan-form"><div id="queue-plan-input" class="setting-field"><label for="queue-plan-percent">¿Qué porcentaje quieres añadir? <span class="optional">opcional</span></label><input id="queue-plan-percent" type="number" min="1" max="100" step="1" inputmode="numeric" placeholder="Por ejemplo, 30" aria-describedby="queue-plan-calculation"></div>
+        <p id="queue-plan-calculation" class="fine-print" role="status"></p>
+        <div class="charge-dialog-actions"><button type="button" class="button button-outline" id="queue-plan-close">Volver</button><button type="submit" class="button button-primary">Entrar en cola</button></div></form>
+    </div></dialog>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "alacarga",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cola independiente y disponibilidad manual de puntos de recarga",
+  "engines": { "node": ">=24.12.0 <25" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "admin": "node src/admin.mjs"
+  },
+  "dependencies": { "web-push": "4.0.0" }
+}
