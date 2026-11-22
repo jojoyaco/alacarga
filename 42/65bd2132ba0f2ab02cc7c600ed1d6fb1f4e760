@@ -1,0 +1,29 @@
+docs/api.md
+  s_a74a0829f17687::t_e39442b35d7ae0 18-23
+src/config.mjs
+  s_a74a0829f17687::t_e72e8ba2918d49 31-35,59-60
+src/http.mjs
+  s_a74a0829f17687::t_e6050123175527 14,115-120,132,140,271,292-295,297,301
+src/metrics.mjs
+  s_a74a0829f17687::t_a2b342a3a10d23 1-79
+src/server.mjs
+  s_a74a0829f17687::t_bf07d727e16fbf 13-16
+test/metrics.test.mjs
+  s_a74a0829f17687::t_22b286d7ba692d 1-79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4265bd2132ba0f2ab02cc7c600ed1d6fb1f4e760",
+  "prompts": {},
+  "sessions": {
+    "s_a74a0829f17687": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_e0493a03fffeS1y4l7tsGROBsl",
+        "model": "unknown"
+      },
+      "human_author": "workflow-engineer <workflow-engineer@appscert.local>"
+    }
+  }
+}
